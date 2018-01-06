@@ -631,12 +631,12 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
-    Build: 1
-    Collab: 1
+    Build: 0
+    Collab: 0
     UNet: 1
   facebookSdkVersion: 7.9.4
   apiCompatibilityLevel: 2
-  cloudProjectId: bf2259b5-2246-4c12-95ae-6adb500826ab
+  cloudProjectId: ba969825-3176-4f98-b5eb-0ff96b216442
   projectName: StickBattleRoyale
   organizationId: sfu-group-project
   cloudEnabled: 0
