@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 
 public class Player : NetworkBehaviour {
 
+	public GameObject player;
+
     //Rotating Player
     Vector2 playerPos;
     Vector2 mousePos;
@@ -32,12 +34,12 @@ public class Player : NetworkBehaviour {
     void RotatePlayer ()
     {
 
-        playerPos = Camera.main.WorldToScreenPoint(transform.position);
+        playerPos = Camera.main.WorldToScreenPoint(player.transform.position);
         mousePos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
         direction = mousePos - playerPos;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;    //Gets angle between current direction and the direction vector
 
-        transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f); //Rotates towards the angle, for some reason our character is 90degrees off set
+        player.transform.rotation = Quaternion.Euler(0f, 0f, angle - 90f); //Rotates towards the angle, for some reason our character is 90degrees off set
     }
 
 	void Movement () {
@@ -45,13 +47,13 @@ public class Player : NetworkBehaviour {
 		Vertical = Input.GetAxis("Vertical");
 		if (Vertical >= 0) {
 			
-			transform.Translate (Vector3.up * WalkSpeed * Time.deltaTime * Vertical);
+			player.transform.Translate (Vector3.up * WalkSpeed * Time.deltaTime * Vertical);
 		} else {
 
-			transform.Translate(Vector3.up * StrafeSpeed * Time.deltaTime * Vertical);
+			player.transform.Translate(Vector3.up * StrafeSpeed * Time.deltaTime * Vertical);
 		}
 
 		Horizontal = Input.GetAxis("Horizontal");
-		transform.Translate(Vector3.right * StrafeSpeed * Time.deltaTime * Horizontal);
+		player.transform.Translate(Vector3.right * StrafeSpeed * Time.deltaTime * Horizontal);
 	}
 }
