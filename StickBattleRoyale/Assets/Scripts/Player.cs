@@ -12,13 +12,12 @@ public class Player : NetworkBehaviour {
     Vector2 mousePos;
     Vector2 direction;
     float angle;
-
     //Moving Player
     public float WalkSpeed;
     public float StrafeSpeed;
     private float Vertical;
     private float Horizontal;
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -31,8 +30,12 @@ public class Player : NetworkBehaviour {
 		Movement ();
 	}
 
-    void RotatePlayer ()
-    {
+	public override void OnStartLocalPlayer() {
+
+		Camera.main.GetComponent<PlayerCam> ().setTarget (gameObject.transform);
+	}
+
+    void RotatePlayer () {
 
         playerPos = Camera.main.WorldToScreenPoint(player.transform.position);
         mousePos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);

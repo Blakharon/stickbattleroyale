@@ -3,35 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-public class PlayerCam : NetworkBehaviour {
+public class PlayerCam : MonoBehaviour {
 
-	public GameObject Player;
-	public GameObject Camera;
+	Vector3 offSet = new Vector3(0,0,-8);
+	public Transform playerTransform;
 
-	public float ZoomOut;
-
-	Vector2 PlayerPos;
-
-	void Start () {
-
-		if (isLocalPlayer) {
-			return;
-		}
-
-		Camera.SetActive (false);
-	}
-
-	// Update is called once per frame
 	void Update () {
 
-		if (!isLocalPlayer) {
+		if (playerTransform != null) {
 
-			return;
+			transform.position = playerTransform.position + offSet;
 		}
+	}
 
-		PlayerPos.x = Player.transform.position.x;
-		PlayerPos.y = Player.transform.position.y;
+	public void setTarget (Transform target) {
 
-		Camera.transform.position = new Vector3 (PlayerPos.x, PlayerPos.y, -ZoomOut);
+		playerTransform = target;
 	}
 }
