@@ -12,7 +12,7 @@ public class PlayerCam : MonoBehaviour {
 
 		if (playerTransform != null) {
 
-			transform.position = playerTransform.position + offSet;
+			transform.position = Vector3.Lerp(transform.position, playerTransform.position + offSet, 3.0f * Time.deltaTime);
 		}
 	}
 
